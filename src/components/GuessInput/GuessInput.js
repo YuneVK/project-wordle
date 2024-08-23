@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 
+import { GUESS_LENGTH } from "../../constants"
+
 function GuessInput({ onSubmitGuess }) {
   const [tentativeGuess, setTentativeGuess] = useState("")
 
@@ -22,10 +24,10 @@ function GuessInput({ onSubmitGuess }) {
         type="text"
         value={tentativeGuess}
         onChange={handleGuessChange}
-        minLength={5}
-        maxLength={5}
-        pattern="^[A-Za-z]{5}$"
-        title="Must be exactly 5 alphanumeric characters"
+        minLength={GUESS_LENGTH}
+        maxLength={GUESS_LENGTH}
+        pattern={`^[A-Za-z]{${GUESS_LENGTH}}$`}
+        title={`Must be exactly ${GUESS_LENGTH} alphanumeric characters`}
         required
       />
     </form>
