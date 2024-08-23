@@ -7,11 +7,11 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants"
 
 const ROWS = range(NUM_OF_GUESSES_ALLOWED)
 
-function GuessResults({ guesses }) {
+function GuessResults({ answer, guesses }) {
   return (
     <div className="guess-results">
       {ROWS.map((number) => (
-        <Guess key={`row-${number}`} value={guesses[number]} />
+        <Guess key={`row-${number}`} answer={answer} value={guesses[number]} />
       ))}
     </div>
   )
