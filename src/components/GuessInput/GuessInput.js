@@ -23,6 +23,8 @@ function GuessInput({ onGuessChange }) {
         type="text"
         value={guess}
         onChange={handleGuessChange}
+        minLength={5}
+        maxLength={5}
         pattern="^[A-Za-z]{5}$"
         title="Must be exactly 5 alphanumeric characters"
         required
