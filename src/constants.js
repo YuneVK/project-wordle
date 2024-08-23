@@ -1,2 +1,2 @@
 export const NUM_OF_GUESSES_ALLOWED = 6
-export const GUESS_LENGTH = 5
+export const NUM_OF_LETTERS_PER_GUESS = 5
