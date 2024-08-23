@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react"
 
-import { sample } from '../../utils';
-import { WORDS } from '../../data';
+import { sample } from "../../utils"
+import { WORDS } from "../../data"
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+const answer = sample(WORDS)
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
+console.info({ answer })
 
 function Game() {
-  return <>Put a game here!</>;
+  return <>Put a game here!</>
 }
 
-export default Game;
+export default Game
