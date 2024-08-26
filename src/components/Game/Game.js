@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 import GuessInput from "../GuessInput"
 import GuessResults from "../GuessResults"
+import Keyboard from "../Keyboard"
 import LostBanner from "../LostBanner"
 import WonBanner from "../WonBanner"
 
@@ -23,6 +24,7 @@ console.info({ answer })
 
 function Game() {
   const [guesses, setGuesses] = useState([])
+  const [results, setResults] = useState([])
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.IN_PROGRESS)
 
   const onSubmitGuess = (tentativeGuess) => {
@@ -30,6 +32,7 @@ function Game() {
     setGuesses(nextGuesses)
 
     const result = checkGuess(tentativeGuess, answer)
+    setResults([...results, result])
 
     const isGameWon = result.every(({ status }) => status === "correct")
     const isGameLost = nextGuesses.length === NUM_OF_GUESSES_ALLOWED
@@ -43,11 +46,12 @@ function Game() {
 
   return (
     <>
-      <GuessResults answer={answer} guesses={guesses} />
+      <GuessResults guesses={guesses} results={results} />
       <GuessInput
         onSubmitGuess={onSubmitGuess}
         disableInput={gameStatus !== GAME_STATUS.IN_PROGRESS}
       />
+      <Keyboard results={results} />
 
       {gameStatus === GAME_STATUS.WON && (
         <WonBanner numOfGuesses={guesses.length} />
