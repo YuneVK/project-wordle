@@ -185,6 +185,12 @@ h1 {
   color: white;
 }
 
+.banner-action {
+  margin-top: 16px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .visually-hidden {
   position: absolute;
   overflow: hidden;

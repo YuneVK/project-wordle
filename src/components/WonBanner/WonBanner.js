@@ -1,6 +1,6 @@
 import React from "react"
 
-function WonBanner({ numOfGuesses }) {
+function WonBanner({ numOfGuesses, onRestart }) {
   return (
     <div className="happy banner">
       <p>
@@ -10,6 +10,9 @@ function WonBanner({ numOfGuesses }) {
         </strong>
         .
       </p>
+      <button className="banner-action" onClick={onRestart}>
+        Restart
+      </button>
     </div>
   )
 }

@@ -17,12 +17,17 @@ const GAME_STATUS = {
   LOST: "lost",
 }
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS)
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer })
+const getRandomWord = () => {
+  const answer = sample(WORDS)
+
+  // To make debugging easier, we'll log the solution in the console.
+  console.info({ answer })
+
+  return answer
+}
 
 function Game() {
+  const [answer, setAnswer] = useState(() => getRandomWord())
   const [guesses, setGuesses] = useState([])
   const [results, setResults] = useState([])
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.IN_PROGRESS)
@@ -44,6 +49,13 @@ function Game() {
     }
   }
 
+  const onRestart = () => {
+    setGuesses([])
+    setResults([])
+    setGameStatus(GAME_STATUS.IN_PROGRESS)
+    setAnswer(getRandomWord())
+  }
+
   return (
     <>
       <GuessResults guesses={guesses} results={results} />
@@ -54,10 +66,12 @@ function Game() {
       <Keyboard results={results} />
 
       {gameStatus === GAME_STATUS.WON && (
-        <WonBanner numOfGuesses={guesses.length} />
+        <WonBanner numOfGuesses={guesses.length} onRestart={onRestart} />
       )}
 
-      {gameStatus === GAME_STATUS.LOST && <LostBanner answer={answer} />}
+      {gameStatus === GAME_STATUS.LOST && (
+        <LostBanner answer={answer} onRestart={onRestart} />
+      )}
     </>
   )
 }
