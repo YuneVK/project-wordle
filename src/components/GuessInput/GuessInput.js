@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { NUM_OF_LETTERS_PER_GUESS } from "../../constants"
 
-function GuessInput({ onSubmitGuess }) {
+function GuessInput({ disableInput, onSubmitGuess }) {
   const [tentativeGuess, setTentativeGuess] = useState("")
 
   const handleSubmit = (event) => {
@@ -28,6 +28,7 @@ function GuessInput({ onSubmitGuess }) {
         maxLength={NUM_OF_LETTERS_PER_GUESS}
         pattern={`^[A-Za-z]{${NUM_OF_LETTERS_PER_GUESS}}$`}
         title={`Must be exactly ${NUM_OF_LETTERS_PER_GUESS} alphanumeric characters`}
+        disabled={disableInput}
         required
       />
     </form>
